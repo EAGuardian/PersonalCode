@@ -1,131 +1,188 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-import sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget,QFrame, QSplitter, QGridLayout, QLabel, QPushButton
-from PyQt5.QtCore import Qt, QUrl, QFileInfo
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
 from PyQt5.QtWebEngineWidgets import QWebEngineView
-class Ui_MainWidget(object):
-    def setupUi(self, MainWidget):
-        MainWidget.setObjectName("MainWidget")
-        MainWidget.resize(855, 559)
-        self.verticalLayout_3 = QtWidgets.QVBoxLayout(MainWidget)
+class Ui_mWidget(object):
+    def setupUi(self, mWidget):
+        mWidget.setObjectName("mWidget")
+        mWidget.resize(1000, 600)
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout(mWidget)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.ChoiceLayout = QtWidgets.QHBoxLayout()
-        self.ChoiceLayout.setObjectName("ChoiceLayout")
-        self.Info_frame = QtWidgets.QFrame(MainWidget)
-        self.Info_frame.setStyleSheet("border:1px solid rgb(170,170,170)")
-        self.Info_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.Info_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.Info_frame.setObjectName("Info_frame")
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.Info_frame)
-        self.verticalLayout_2.setSpacing(1)
+        self.chooseLayout = QtWidgets.QHBoxLayout()
+        self.chooseLayout.setObjectName("chooseLayout")
+        self.infoFrame = QtWidgets.QFrame(mWidget)
+        self.infoFrame.setStyleSheet("border:1px solid rgb(170,170,170)")
+        self.infoFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.infoFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.infoFrame.setObjectName("infoFrame")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.infoFrame)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.InfoLayout = QtWidgets.QVBoxLayout()
-        self.InfoLayout.setSpacing(6)
-        self.InfoLayout.setObjectName("InfoLayout")
-        self.FilePathLayout = QtWidgets.QHBoxLayout()
-        self.FilePathLayout.setObjectName("FilePathLayout")
-        self.filepathlable = QtWidgets.QLabel(self.Info_frame)
-        self.filepathlable.setStyleSheet("")
-        self.filepathlable.setObjectName("filepathlable")
-        self.FilePathLayout.addWidget(self.filepathlable)
-        self.line_fliepath_edit = QtWidgets.QLineEdit(self.Info_frame)
-        self.line_fliepath_edit.setEnabled(False)
-        self.line_fliepath_edit.setAcceptDrops(True)
-        self.line_fliepath_edit.setReadOnly(False)
-        self.line_fliepath_edit.setObjectName("line_fliepath_edit")
-        self.FilePathLayout.addWidget(self.line_fliepath_edit)
-        self.InfoLayout.addLayout(self.FilePathLayout)
-        self.NodeInfoLayout = QtWidgets.QHBoxLayout()
-        self.NodeInfoLayout.setObjectName("NodeInfoLayout")
-        self.pointnum = QtWidgets.QLabel(self.Info_frame)
-        self.pointnum.setObjectName("pointnum")
-        self.NodeInfoLayout.addWidget(self.pointnum)
-        self.pointnum_show = QtWidgets.QLineEdit(self.Info_frame)
-        self.pointnum_show.setEnabled(False)
-        self.pointnum_show.setObjectName("pointnum_show")
-        self.NodeInfoLayout.addWidget(self.pointnum_show)
-        self.starttime = QtWidgets.QLabel(self.Info_frame)
-        self.starttime.setObjectName("starttime")
-        self.NodeInfoLayout.addWidget(self.starttime)
-        self.starttime_show = QtWidgets.QLineEdit(self.Info_frame)
-        self.starttime_show.setObjectName("starttime_show")
-        self.NodeInfoLayout.addWidget(self.starttime_show)
-        self.endtime = QtWidgets.QLabel(self.Info_frame)
-        self.endtime.setObjectName("endtime")
-        self.NodeInfoLayout.addWidget(self.endtime)
-        self.endtime_show = QtWidgets.QLineEdit(self.Info_frame)
-        self.endtime_show.setEnabled(False)
-        self.endtime_show.setObjectName("endtime_show")
-        self.NodeInfoLayout.addWidget(self.endtime_show)
-        self.InfoLayout.addLayout(self.NodeInfoLayout)
-        self.verticalLayout_2.addLayout(self.InfoLayout)
-        self.ChoiceLayout.addWidget(self.Info_frame)
-        self.ChooseFileBtn = QtWidgets.QPushButton(MainWidget)
-        self.ChooseFileBtn.setObjectName("ChooseFileBtn")
-        self.ChoiceLayout.addWidget(self.ChooseFileBtn)
-        self.RefreshBtn = QtWidgets.QPushButton(MainWidget)
-        self.RefreshBtn.setObjectName("RefreshBtn")
-        self.ChoiceLayout.addWidget(self.RefreshBtn)
-        self.verticalLayout_3.addLayout(self.ChoiceLayout)
-        self.Show_frame = QtWidgets.QFrame(MainWidget)
-        self.Show_frame.setStyleSheet("border: 1px solid rgb(200,200,200)")
-        self.Show_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.Show_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.Show_frame.setObjectName("Show_frame")
-        #图的框架设置
-        self.Graph_grid = QGridLayout()     #栅格布局
-        self.Browser = QWebEngineView()     #浏览器
-        self.Graph_grid.addWidget(self.Browser)   #增加浏览器窗口
-        self.Show_frame.setLayout(self.Graph_grid)   #设置展示框的栅格布局
-        self.verticalLayout_3.addWidget(self.Show_frame)
-        self.Slider = QtWidgets.QSlider(MainWidget)
-        self.Slider.setOrientation(QtCore.Qt.Horizontal)
-        self.Slider.setTickPosition(QtWidgets.QSlider.TicksBelow)
-        self.Slider.setTickInterval(5)
-        self.Slider.setObjectName("Slider")
-        self.verticalLayout_3.addWidget(self.Slider)
+        self.infoLayout = QtWidgets.QVBoxLayout()
+        self.infoLayout.setSpacing(6)
+        self.infoLayout.setObjectName("infoLayout")
+        self.pathLayout = QtWidgets.QHBoxLayout()
+        self.pathLayout.setObjectName("pathLayout")
+        self.filePathShow = QtWidgets.QLabel(self.infoFrame)
+        self.filePathShow.setStyleSheet("")
+        self.filePathShow.setObjectName("filePathShow")
+        self.pathLayout.addWidget(self.filePathShow)
+        self.filePath = QtWidgets.QLineEdit(self.infoFrame)
+        self.filePath.setEnabled(False)
+        self.filePath.setAcceptDrops(True)
+        self.filePath.setReadOnly(False)
+        self.filePath.setObjectName("filePath")
+        self.pathLayout.addWidget(self.filePath)
+        self.infoLayout.addLayout(self.pathLayout)
+        self.timeLayout = QtWidgets.QHBoxLayout()
+        self.timeLayout.setObjectName("timeLayout")
+        self.pointNum = QtWidgets.QLabel(self.infoFrame)
+        self.pointNum.setObjectName("pointNum")
+        self.timeLayout.addWidget(self.pointNum)
+        self.pointNumShow = QtWidgets.QLineEdit(self.infoFrame)
+        self.pointNumShow.setEnabled(False)
+        self.pointNumShow.setObjectName("pointNumShow")
+        self.timeLayout.addWidget(self.pointNumShow)
+        self.startTime = QtWidgets.QLabel(self.infoFrame)
+        self.startTime.setObjectName("startTime")
+        self.timeLayout.addWidget(self.startTime)
+        self.startTimeShow = QtWidgets.QLineEdit(self.infoFrame)
+        self.startTimeShow.setObjectName("startTimeShow")
+        self.timeLayout.addWidget(self.startTimeShow)
+        self.endTime = QtWidgets.QLabel(self.infoFrame)
+        self.endTime.setObjectName("endTime")
+        self.timeLayout.addWidget(self.endTime)
+        self.endTimeShow = QtWidgets.QLineEdit(self.infoFrame)
+        self.endTimeShow.setEnabled(False)
+        self.endTimeShow.setObjectName("endTimeShow")
+        self.timeLayout.addWidget(self.endTimeShow)
+        self.infoLayout.addLayout(self.timeLayout)
+        self.verticalLayout_2.addLayout(self.infoLayout)
+        self.chooseLayout.addWidget(self.infoFrame)
+        self.btnLayout = QtWidgets.QVBoxLayout()
+        self.btnLayout.setObjectName("btnLayout")
+        self.sbtnLayout1 = QtWidgets.QHBoxLayout()
+        self.sbtnLayout1.setSpacing(20)
+        self.sbtnLayout1.setObjectName("sbtnLayout1")
+        self.btnOpenFile = QtWidgets.QPushButton(mWidget)
+        self.btnOpenFile.setObjectName("btnOpenFile")
+        self.sbtnLayout1.addWidget(self.btnOpenFile)
+        self.btnStop = QtWidgets.QPushButton(mWidget)
+        self.btnStop.setObjectName("btnStop")
+        self.sbtnLayout1.addWidget(self.btnStop)
+        self.sbtnLayout1.setStretch(0, 1)
+        self.sbtnLayout1.setStretch(1, 1)
+        self.btnLayout.addLayout(self.sbtnLayout1)
+        self.sbtnLayout2 = QtWidgets.QHBoxLayout()
+        self.sbtnLayout2.setObjectName("sbtnLayout2")
+        self.radio5 = QtWidgets.QRadioButton(mWidget)
+        self.radio5.setObjectName("radio5")
+        self.sbtnLayout2.addWidget(self.radio5)
+        self.radio10 = QtWidgets.QRadioButton(mWidget)
+        self.radio10.setChecked(True)
+        self.radio10.setObjectName("radio10")
+        self.sbtnLayout2.addWidget(self.radio10)
+        self.radio20 = QtWidgets.QRadioButton(mWidget)
+        self.radio20.setObjectName("radio20")
+        self.sbtnLayout2.addWidget(self.radio20)
+        self.btnAuto = QtWidgets.QPushButton(mWidget)
+        self.btnAuto.setCheckable(False)
+        self.btnAuto.setObjectName("btnAuto")
+        self.sbtnLayout2.addWidget(self.btnAuto)
+        self.btnLayout.addLayout(self.sbtnLayout2)
+        self.chooseLayout.addLayout(self.btnLayout)
+        self.chooseLayout.setStretch(0, 5)
+        self.chooseLayout.setStretch(1, 1)
+        self.verticalLayout_3.addLayout(self.chooseLayout)
+        self.showFrame = QtWidgets.QFrame(mWidget)
+        self.showFrame.setStyleSheet("border: 1px solid rgb(200,200,200)")
+        self.showFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.showFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.showFrame.setObjectName("showFrame")
+        self.verticalLayout_3.addWidget(self.showFrame)
+        self.slider = QtWidgets.QSlider(mWidget)
+        self.slider.setOrientation(QtCore.Qt.Horizontal)
+        self.slider.setTickPosition(QtWidgets.QSlider.TicksBelow)
+        self.slider.setMaximum(28000)
+        self.slider.setMinimum(0)
+        self.slider.setTickInterval(1000)
+        self.slider.setObjectName("slider")
+        self.verticalLayout_3.addWidget(self.slider)
         self.verticalLayout_3.setStretch(1, 1)
-        self.verticalLayout_3.setStretch(2, 1)
-        self.retranslateUi(MainWidget)
-        QtCore.QMetaObject.connectSlotsByName(MainWidget)
-        # 从这里开始是绘制节点demo
-        from pyecharts import options as opts
-        from pyecharts.charts import Graph
-        nodes = [
-            {"name": "结点1", "symbolSize": 20},
-            {"name": "结点2", "symbolSize": 20},
-            {"name": "结点3", "symbolSize": 20},
-            {"name": "结点4", "symbolSize": 20},
-            {"name": "结点5", "symbolSize": 20},
-            {"name": "结点6", "symbolSize": 20},
-            {"name": "结点7", "symbolSize": 20},
-            {"name": "结点8", "symbolSize": 20},
-        ]
-        links = []
-        for i in nodes:
-            for j in nodes:
-                links.append({"source": i.get("name"), "target": j.get("name")})
-        c = (
-            Graph()
-                .add("", nodes, links, repulsion=4000, edge_symbol={"arrow"})
-                .set_global_opts(title_opts=opts.TitleOpts(title="Graph-Demo"))
-                .render("graph_base.html")
-        )
-        # 从这里是结束绘制节点demo
-        self.Browser.load(QUrl(QFileInfo("./graph_base.html").absoluteFilePath()))  # 加载节点图
-    def retranslateUi(self, MainWidget):
+        self.retranslateUi(mWidget)
+        QtCore.QMetaObject.connectSlotsByName(mWidget)
+
+        timer = QTimer()
+        timer.timeout.connect(self.Update)
+        a = 1.0
+
+        # 进度条变化信号
+        self.slider.valueChanged.connect(self.ValChange)
+        self.btnAuto.clicked.connect(self.AutoSlider)
+        self.btnStop.clicked.connect(self.StopAutoSlider)
+        self.btnAuto.clicked.connect(lambda: timer.start(1000))
+        self.btnStop.clicked.connect(lambda: timer.stop())
+
+        #绘图
+        self.graphGrid = QGridLayout()
+        self.browser = QWebEngineView()
+        self.graphGrid.addWidget(self.browser)
+
+        import PaintGraph
+        PaintGraph.Paiting('0','29000')
+        self.browser.load(QUrl(QFileInfo("./graph_base.html").absoluteFilePath()))  # 加载节点图
+        self.showFrame.setLayout(self.graphGrid)
+    def retranslateUi(self, mWidget):
         _translate = QtCore.QCoreApplication.translate
-        MainWidget.setWindowTitle(_translate("MainWidget", "Demo"))
-        self.filepathlable.setText(_translate("MainWidget", "文件路径："))
-        self.pointnum.setText(_translate("MainWidget", "节点数量："))
-        self.starttime.setText(_translate("MainWidget", "起始时间："))
-        self.endtime.setText(_translate("MainWidget", "结束时间："))
-        self.ChooseFileBtn.setText(_translate("MainWidget", "选择文件"))
-        self.RefreshBtn.setText(_translate("MainWidget", "刷新"))
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    window = QWidget()
-    ui = Ui_MainWidget()
-    ui.setupUi(window)
-    window.show()
+        mWidget.setWindowTitle(_translate("mWidget", "Demo"))
+        self.filePathShow.setText(_translate("mWidget", "文件路径："))
+        self.pointNum.setText(_translate("mWidget", "节点数量："))
+        self.startTime.setText(_translate("mWidget", "起始时间："))
+        self.endTime.setText(_translate("mWidget", "结束时间："))
+        self.btnOpenFile.setText(_translate("mWidget", "选择文件"))
+        self.btnStop.setText(_translate("mWidget", "停止"))
+        self.radio5.setText(_translate("mWidget", "x0.5"))
+        self.radio10.setText(_translate("mWidget", "x1.0"))
+        self.radio20.setText(_translate("mWidget", "x2.0"))
+        self.btnAuto.setText(_translate("mWidget", "自动播放"))
+
+    #获取滚动条速度
+    def GetSliderSpeed(self):
+        if (self.radio5.isChecked()): return 2.0
+        if (self.radio10.isChecked()): return 1.0
+        if (self.radio20.isChecked()): return 0.5
+
+    #开始自动播放
+    def AutoSlider(self):
+        self.radio5.setEnabled(False)
+        self.radio10.setEnabled(False)
+        self.radio20.setEnabled(False)
+
+    #结束自动播放
+    def StopAutoSlider(self):
+        self.radio5.setEnabled(True)
+        self.radio10.setEnabled(True)
+        self.radio20.setEnabled(True)
+
+    # 进度条变化
+    def ValChange(self):
+        self.startTimeShow.setText(str(self.slider.value()))
+        self.endTimeShow.setText(str(self.slider.value() + 1000))
+        import PaintGraph
+        PaintGraph.Paiting(str(self.slider.value()),str(self.slider.value() + 1000))
+        self.browser.load(QUrl(QFileInfo("./graph_base.html").absoluteFilePath()))  # 加载节点图
+
+    #滚动条更新
+    def Update(self):
+        self.a = self.GetSliderSpeed();
+        v = self.slider.value()
+        self.slider.setValue(v+1000)
+
+
+if __name__=="__main__":
+    import sys
+    app=QtWidgets.QApplication(sys.argv)
+    widget=QtWidgets.QWidget()
+    ui=Ui_mWidget()
+    ui.setupUi(widget)
+    widget.show()
     sys.exit(app.exec_())
